@@ -17,18 +17,14 @@ const quizData = [
   function buildQuiz() {
     quizData.forEach((data, index) => {
       const div = document.createElement('div');
-      div.classList.add('questionBox');
-      div.innerHTML = `<p>${index + 1}. ${data.question}</p>
+      div.innerHTML = `<div>${index + 1}. ${data.question}</div>
         <input type="radio" id="true${index}" name="question${index}" value="true">
         <label for="true${index}">Đúng</label>
-        </br>
         <input type="radio" id="false${index}" name="question${index}" value="false">
         <label for="false${index}">Sai</label>`;
-        
       quizContainer.appendChild(div);
     });
   }
-
   
   function checkAnswers() {
     let score = 0;
@@ -40,14 +36,8 @@ const quizData = [
         }
       }
     });
-    localStorage.setItem('group1_score', score);
-    console.log(score);
-}   
-    
-
-function submitQuiz() {
-    checkAnswers();
-    window.location.href = "../group2/group2.html";
-}
-
-buildQuiz();
+    resultContainer.innerHTML = `Kết quả: ${score}/${quizData.length}`;
+  }
+  
+  buildQuiz();
+  
